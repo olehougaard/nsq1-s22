@@ -1,0 +1,27 @@
+{
+  "name": "nsq1-s22",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olehougaard/nsq1-s22.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olehougaard/nsq1-s22/issues"
+  },
+  "homepage": "https://github.com/olehougaard/nsq1-s22#readme",
+  "dependencies": {
+    "@neo4j/graphql": "^3.1.0",
+    "apollo-server": "^3.6.7",
+    "dotenv": "^16.0.0",
+    "graphql": "^16.4.0",
+    "neo4j-driver": "^4.4.5"
+  }
+}
