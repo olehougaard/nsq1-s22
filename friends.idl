@@ -2,16 +2,16 @@ type Person {
   id: ID!,
   name: String!,
   spouse: Person @relationship(type: "SPOUSE", direction: OUT),
-  children: [Person!] @relationship(type: "CHILD", direction: OUT),
-  friends: [Person!] @relationship(type: "FRIEND", direction: OUT),
-  acquaintances: [Person!] @relationship(type: "ACQUAINTANCE", direction: OUT),
+  children: [Person!]! @relationship(type: "CHILD", direction: OUT),
+  friends: [Person!]! @relationship(type: "FRIEND", direction: OUT),
+  acquaintances: [Person!]! @relationship(type: "ACQUAINTANCE", direction: OUT),
   works: Company @relationship(type: "WORKS", direction: OUT)
 }
 
 type Company {
   id: ID!,
   name: String,
-  employees: [Person!] @relationship(type: "WORKS", direction: IN)
+  employees: [Person!]! @relationship(type: "WORKS", direction: IN)
 }
 
 type QueryType {
