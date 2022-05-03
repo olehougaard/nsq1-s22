@@ -1,5 +1,5 @@
 type Person {
-  id: ID!,
+  id: Int!,
   name: String!,
   spouse: Person @relationship(type: "SPOUSE", direction: OUT),
   children: [Person!]! @relationship(type: "CHILD", direction: OUT),
@@ -9,21 +9,16 @@ type Person {
 }
 
 type Company {
-  id: ID!,
+  id: Int!,
   name: String,
   employees: [Person!]! @relationship(type: "WORKS", direction: IN)
 }
 
-type QueryType {
+type Query {
   colleagues(id: Int!): [Person] @cypher(statement: "MATCH (:Person {id: $id})-[:WORKS]->()<-[:WORKS]-(p) RETURN p")
 }
 
-type MutationType {
-  createChild(parent1id: ID!, parent2id: ID!, id: ID!, name: String!): Person 
+type Mutation {
+  createChild(parent1id: Int!, parent2id: Int!, id: Int!, name: String!): Person 
   @cypher(statement: "MATCH (parent1: Person {id: $parent1id}), (parent2: Person {id: $parent2id}) MERGE (parent1)-[:CHILD]->(c:Person {id: $id, name: $name})<-[:CHILD]-(parent2) RETURN c")
-}
-
-schema {
-  query: QueryType,
-  mutation: MutationType
 }
