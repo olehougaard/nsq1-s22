@@ -13,7 +13,7 @@ driver.verifyConnectivity()
 .then(() => console.log('Verified'))
 .catch(err => console.error(`Error: ${err}`))
 
-fs.readFile('./friends.idl', 'utf8')
+fs.readFile('./friends.sdl', 'utf8')
 .then(gql)
 .then(typeDefs => new Neo4jGraphQL({ typeDefs, driver }))
 .then(graphQL => graphQL.getSchema())
