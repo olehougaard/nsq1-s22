@@ -5,19 +5,12 @@ type Person {
   children: [Person!]! @relationship(type: "CHILD", direction: OUT),
   parent: [Person!]! @relationship(type: "CHILD", direction: IN),
   friends: [Person!]! @relationship(type: "FRIEND", direction: OUT),
-  acquaintances: [Person!]! @relationship(type: "ACQUAINTANCE", direction: OUT),
-  works: Company @relationship(type: "WORKS", direction: OUT)
-}
-
-type Company {
-  id: Int!,
-  name: String,
-  employees: [Person!]! @relationship(type: "WORKS", direction: IN)
+  acquaintances: [Person!]! @relationship(type: "ACQUAINTANCE", direction: OUT)
 }
 
 type Query {
-  colleagues(id: Int!): [Person] 
-  @cypher(statement: "MATCH (:Person {id: $id})-[:WORKS]->()<-[:WORKS]-(p) RETURN p")
+  siblings(id: Int!): [Person] 
+  @cypher(statement: "MATCH (:Person {id: $id})<-[:CHILD]-()-[:CHILD]->(p) RETURN p")
 }
 
 type Mutation {
