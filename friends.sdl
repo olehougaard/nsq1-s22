@@ -3,13 +3,13 @@ type Person {
   name: String!,
   spouse: Person @relationship(type: "SPOUSE", direction: OUT),
   children: [Person!]! @relationship(type: "CHILD", direction: OUT),
-  parent: [Person!]! @relationship(type: "CHILD", direction: IN),
+  parents: [Person!]! @relationship(type: "CHILD", direction: IN),
   friends: [Person!]! @relationship(type: "FRIEND", direction: OUT),
   acquaintances: [Person!]! @relationship(type: "ACQUAINTANCE", direction: OUT)
 }
 
 type Query {
-  siblings(id: Int!): [Person] 
+  siblings(id: Int!): [Person!]! 
   @cypher(statement: "MATCH (:Person {id: $id})<-[:CHILD]-()-[:CHILD]->(p) RETURN p")
 }
 
