@@ -1,5 +1,6 @@
 type Person {
   id: Int!,
+  identity: Int! @cypher(statement: "RETURN ID(this)"),
   name: String!,
   spouse: Person @relationship(type: "SPOUSE", direction: OUT),
   children: [Person!]! @relationship(type: "CHILD", direction: OUT),
